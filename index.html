@@ -1,0 +1,94 @@
+<!-- Copyright (C) Microsoft Corporation. All rights reserved. -->
+<!DOCTYPE html>
+<html style="--vs-theme-background-color: #1e1e1e; --vs-theme-foreground-color: #d4d4d4">
+	<head>
+		<script>
+			performance.mark('code/didStartRenderer');
+		</script>
+		<meta charset="utf-8" />
+
+		<!-- Mobile tweaks -->
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="Code">
+		<link rel="apple-touch-icon" sizes="192x192" href="./static/resources/server/code-192.png" />
+		<link rel="apple-touch-icon" sizes="512x512" href="./static/resources/server/code-512.png" />
+
+		<!-- Disable pinch zooming -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+		<!-- Workbench Configuration -->
+		<meta id="vscode-workbench-web-configuration" data-settings="{&quot;productConfiguration&quot;:{&quot;nameShort&quot;:&quot;code-server&quot;,&quot;nameLong&quot;:&quot;code-server&quot;,&quot;applicationName&quot;:&quot;code-server&quot;,&quot;dataFolderName&quot;:&quot;.code-server&quot;,&quot;win32MutexName&quot;:&quot;codeserver&quot;,&quot;licenseName&quot;:&quot;MIT&quot;,&quot;licenseUrl&quot;:&quot;https://github.com/cdr/code-server/blob/main/LICENSE.txt&quot;,&quot;serverGreeting&quot;:[],&quot;serverLicense&quot;:[],&quot;serverLicensePrompt&quot;:&quot;&quot;,&quot;win32DirName&quot;:&quot;Code Server OSS&quot;,&quot;win32NameVersion&quot;:&quot;Code Server OSS&quot;,&quot;win32RegValueName&quot;:&quot;CodeOSS&quot;,&quot;win32AppId&quot;:&quot;{{E34003BB-9E10-4501-8C11-BE3FAA83F23F}&quot;,&quot;win32x64AppId&quot;:&quot;{{D77B7E06-80BA-4137-BCF4-654B95CCEBC5}&quot;,&quot;win32arm64AppId&quot;:&quot;{{D1ACE434-89C5-48D1-88D3-E2991DF85475}&quot;,&quot;win32UserAppId&quot;:&quot;{{C6065F05-9603-4FC4-8101-B9781A25D88E}&quot;,&quot;win32x64UserAppId&quot;:&quot;{{CC6B787D-37A0-49E8-AE24-8559A032BE0C}&quot;,&quot;win32arm64UserAppId&quot;:&quot;{{3AEBF0C8-F733-4AD4-BADE-FDB816D53D7B}&quot;,&quot;win32AppUserModelId&quot;:&quot;Coder.CodeServer&quot;,&quot;win32ShellNameShort&quot;:&quot;C&ode Server&quot;,&quot;darwinBundleIdentifier&quot;:&quot;com.coder.code.server&quot;,&quot;linuxIconName&quot;:&quot;com.coder.code.server&quot;,&quot;licenseFileName&quot;:&quot;LICENSE.txt&quot;,&quot;reportIssueUrl&quot;:&quot;https://github.com/cdr/code-server/issues/new&quot;,&quot;urlProtocol&quot;:&quot;code-oss&quot;,&quot;webviewContentExternalBaseUrlTemplate&quot;:&quot;./webview/{{uuid}}/&quot;,&quot;extensionAllowedProposedApi&quot;:[&quot;ms-vscode.vscode-js-profile-flame&quot;,&quot;ms-vscode.vscode-js-profile-table&quot;,&quot;GitHub.remotehub&quot;,&quot;GitHub.remotehub-insiders&quot;,&quot;coder.vscode-link&quot;],&quot;builtInExtensions&quot;:[{&quot;name&quot;:&quot;ms-vscode.references-view&quot;,&quot;version&quot;:&quot;0.0.81&quot;,&quot;repo&quot;:&quot;https://github.com/microsoft/vscode-references-view&quot;,&quot;metadata&quot;:{&quot;id&quot;:&quot;dc489f46-520d-4556-ae85-1f9eab3c412d&quot;,&quot;publisherId&quot;:{&quot;publisherId&quot;:&quot;5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee&quot;,&quot;publisherName&quot;:&quot;ms-vscode&quot;,&quot;displayName&quot;:&quot;Microsoft&quot;,&quot;flags&quot;:&quot;verified&quot;},&quot;publisherDisplayName&quot;:&quot;Microsoft&quot;}},{&quot;name&quot;:&quot;ms-vscode.js-debug-companion&quot;,&quot;version&quot;:&quot;1.0.15&quot;,&quot;repo&quot;:&quot;https://github.com/microsoft/vscode-js-debug-companion&quot;,&quot;metadata&quot;:{&quot;id&quot;:&quot;99cb0b7f-7354-4278-b8da-6cc79972169d&quot;,&quot;publisherId&quot;:{&quot;publisherId&quot;:&quot;5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee&quot;,&quot;publisherName&quot;:&quot;ms-vscode&quot;,&quot;displayName&quot;:&quot;Microsoft&quot;,&quot;flags&quot;:&quot;verified&quot;},&quot;publisherDisplayName&quot;:&quot;Microsoft&quot;}},{&quot;name&quot;:&quot;ms-vscode.js-debug&quot;,&quot;version&quot;:&quot;1.62.0&quot;,&quot;repo&quot;:&quot;https://github.com/microsoft/vscode-js-debug&quot;,&quot;metadata&quot;:{&quot;id&quot;:&quot;25629058-ddac-4e17-abba-74678e126c5d&quot;,&quot;publisherId&quot;:{&quot;publisherId&quot;:&quot;5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee&quot;,&quot;publisherName&quot;:&quot;ms-vscode&quot;,&quot;displayName&quot;:&quot;Microsoft&quot;,&quot;flags&quot;:&quot;verified&quot;},&quot;publisherDisplayName&quot;:&quot;Microsoft&quot;}},{&quot;name&quot;:&quot;ms-vscode.vscode-js-profile-table&quot;,&quot;version&quot;:&quot;0.0.18&quot;,&quot;repo&quot;:&quot;https://github.com/microsoft/vscode-js-profile-visualizer&quot;,&quot;metadata&quot;:{&quot;id&quot;:&quot;7e52b41b-71ad-457b-ab7e-0620f1fc4feb&quot;,&quot;publisherId&quot;:{&quot;publisherId&quot;:&quot;5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee&quot;,&quot;publisherName&quot;:&quot;ms-vscode&quot;,&quot;displayName&quot;:&quot;Microsoft&quot;,&quot;flags&quot;:&quot;verified&quot;},&quot;publisherDisplayName&quot;:&quot;Microsoft&quot;}}],&quot;//&quot;:&quot;https://github.com/VSCodium/vscodium/pull/155/files&quot;,&quot;documentationUrl&quot;:&quot;https://go.microsoft.com/fwlink/?LinkID=533484#vscode&quot;,&quot;keyboardShortcutsUrlMac&quot;:&quot;https://go.microsoft.com/fwlink/?linkid=832143&quot;,&quot;keyboardShortcutsUrlLinux&quot;:&quot;https://go.microsoft.com/fwlink/?linkid=832144&quot;,&quot;keyboardShortcutsUrlWin&quot;:&quot;https://go.microsoft.com/fwlink/?linkid=832145&quot;,&quot;introductoryVideosUrl&quot;:&quot;https://go.microsoft.com/fwlink/?linkid=832146&quot;,&quot;tipsAndTricksUrl&quot;:&quot;https://go.microsoft.com/fwlink/?linkid=852118&quot;,&quot;newsletterSignupUrl&quot;:&quot;https://www.research.net/r/vsc-newsletter&quot;,&quot;extensionsGallery&quot;:{&quot;serviceUrl&quot;:&quot;https://open-vsx.org/vscode/gallery&quot;,&quot;itemUrl&quot;:&quot;https://open-vsx.org/vscode/item&quot;,&quot;resourceUrlTemplate&quot;:&quot;https://open-vsx.org/vscode/asset/{publisher}/{name}/{version}/Microsoft.VisualStudio.Code.WebResources/{path}&quot;,&quot;controlUrl&quot;:&quot;&quot;,&quot;recommendationsUrl&quot;:&quot;&quot;},&quot;linkProtectionTrustedDomains&quot;:[&quot;https://open-vsx.org&quot;],&quot;enableTelemetry&quot;:true,&quot;commit&quot;:&quot;735c6da829535969ff7193c79379299e4a1cb9bc&quot;,&quot;quality&quot;:&quot;stable&quot;,&quot;date&quot;:&quot;2022-01-05T17:51:28Z&quot;,&quot;codeServerVersion&quot;:&quot;4.0.1&quot;,&quot;version&quot;:&quot;1.63.0&quot;,&quot;auth&quot;:&quot;none&quot;,&quot;serviceWorker&quot;:{&quot;scope&quot;:&quot;./&quot;,&quot;url&quot;:&quot;./service-worker.js&quot;},&quot;base&quot;:&quot;.&quot;,&quot;logoutEndpointUrl&quot;:&quot;./logout&quot;,&quot;proxyEndpointUrlTemplate&quot;:&quot;./proxy/{port}&quot;,&quot;webEndpointUrl&quot;:&quot;./static&quot;,&quot;webEndpointUrlTemplate&quot;:&quot;./static&quot;,&quot;updateUrl&quot;:&quot;./update/check&quot;},&quot;remoteAuthority&quot;:&quot;remote&quot;,&quot;developmentOptions&quot;:{&quot;logLevel&quot;:2},&quot;userDataPath&quot;:&quot;/home/ec2-user/.local/share/code-server&quot;}">
+
+		<!-- Workbench Auth Session -->
+		<meta id="vscode-workbench-auth-session" data-settings="">
+
+		<!-- NLS Configuration -->
+		<meta id="vscode-remote-nls-configuration" data-settings="{&quot;locale&quot;:&quot;en&quot;,&quot;availableLanguages&quot;:{}}">
+
+		<!-- Workbench Icon/Manifest/CSS -->
+		<link rel="icon" href="./static/resources/server/favicon-dark-support.svg" type="image/svg+xml" />
+		<link rel="alternate icon" href="./static/resources/server/favicon.svg" type="image/svg+xml" />
+
+		<link rel="icon" href="./favicon.ico" type="image/x-icon" />
+		<link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
+		<meta name="theme-color" content="#1e1e1e">
+
+		<link data-name="vs/workbench/workbench.web.api" rel="stylesheet" href="./static/out/vs/workbench/workbench.web.api.css">
+	</head>
+
+	<body style="background-color: var(--vs-theme-background-color); color: var(--vs-theme-foreground-color)" aria-label="">
+	</body>
+
+	<!-- Startup (do not modify order of script tags!) -->
+	<script src="./static/out/vs/loader.js"></script>
+	<script src="./static/out/vs/webPackagePaths.js"></script>
+	<script>
+		/**
+		 * Use relative paths and NLS configuration (based on
+		 * ../../../../bootstrap.js).
+		 * @author coder
+		 */
+		let nlsConfig
+		try {
+			nlsConfig = JSON.parse(document.getElementById("vscode-remote-nls-configuration").getAttribute("data-settings"))
+			if (nlsConfig._resolvedLanguagePackCoreLocation) {
+				const bundles = Object.create(null)
+				nlsConfig.loadBundle = (bundle, _language, cb) => {
+					const result = bundles[bundle]
+					if (result) {
+						return cb(undefined, result)
+					}
+					const path = nlsConfig._resolvedLanguagePackCoreLocation + "/" + bundle.replace(/\//g, "!") + ".nls.json"
+					fetch(`./vscode-remote-resource/?path=${encodeURIComponent(path)}`)
+						.then((response) => response.json())
+						.then((json) => {
+							bundles[bundle] = json
+							cb(undefined, json)
+						})
+						.catch(cb)
+				}
+			}
+		} catch (error) { /* Probably fine. */ }
+		Object.keys(self.webPackagePaths).map(function (key, index) {
+			self.webPackagePaths[key] = new URL(`./static/node_modules/${key}/${self.webPackagePaths[key]}`, window.location.href).toString();
+		});
+		require.config({
+			baseUrl: new URL('./static/out', window.location.href).toString(),
+			recordStats: true,
+			trustedTypesPolicy: window.trustedTypes?.createPolicy('amdLoader', {
+				createScriptURL(value) {
+					return value;
+				}
+			}),
+			paths: self.webPackagePaths,
+			'vs/nls': nlsConfig,
+		});
+	</script>
+	<script>
+		performance.mark('code/willLoadWorkbenchMain');
+	</script>
+	<script src="./static/out/vs/workbench/workbench.web.api.nls.js"></script>
+	<script src="./static/out/vs/workbench/workbench.web.api.js"></script>
+	<script src="./static/out/vs/code/browser/workbench/workbench.js"></script>
+</html>
